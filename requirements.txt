@@ -1,0 +1,5 @@
+flask
+pyjwt
+python-dotenv
+requests
+

@@ -1,8 +1,12 @@
+
 import os
 import jwt
 import time
 import requests
+import dotenv
 from flask import Flask, request, jsonify
+
+dotenv.load_dotenv()
 
 # Replace with your GitHub App credentials
 PRIVATE_KEY = os.getenv("GITHUB_PRIVATE_KEY", "none")  # PEM private key string
