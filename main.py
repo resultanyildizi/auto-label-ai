@@ -8,9 +8,11 @@ from flask import Flask, request, jsonify
 
 dotenv.load_dotenv()
 
-# Replace with your GitHub App credentials
-PRIVATE_KEY = os.getenv("GITHUB_PRIVATE_KEY", "none")  # PEM private key string
 CLIENT_ID = os.getenv("GITHUB_CLIENT_ID", "none")  # Github client id
+# read the .pem file
+with open("autolabelai.2025-01-21.private-key.pem", "r") as f:
+    PRIVATE_KEY = f.read()
+    f.close()
 
 app = Flask(__name__)
 
