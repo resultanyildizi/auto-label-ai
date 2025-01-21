@@ -58,14 +58,14 @@ def webhook():
         # You can respond to the issue here using the installation token
         installation_id = payload["installation"]["id"]
         token = get_installation_token(installation_id)
-        respond_to_issue(issue_url, token)
+        respond_to_issue(repo_name, issue["number"], token)
 
     return jsonify({"status": "success"})
 
 # Function to respond to the issue
-def respond_to_issue(issue_url, token):
+def respond_to_issue(repo_name, issue_number, token):
     headers = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"}
-    comment_url = f"{issue_url}/comments"
+    comment_url = f"https://api.github.com/repos/{repo_name}/issues/{issue_number}/comments"
     data = {"body": "Thank you for opening this issue. We will look into it!"}
     response = requests.post(comment_url, json=data, headers=headers)
     if response.status_code == 201:
